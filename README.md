@@ -1,5 +1,22 @@
 # ft_server_dev
 
+### How to run and test
+
+*Requirements*  
+  You need docker installed.
+
+1. Make the ports 80 and 443 available.
+  **service nginx stop** - To make sure nginx is off.
+  **docker stop $(docker ps -aq)** - To make sure all containers are off.
+2. Build image from docker file.
+  **cd path_to_dockerfile_folder**
+  **docker build -t test_img ./**
+3. Run container from created image.
+  **docker run --name test_cont -it -p 80:80 -p 443:443 test_img**
+4. The container will start and you can use bash inside it.
+  You can turn autoindex on and of using **bash root/autoindex.sh**
+5. Accessing localhost.
+  You can access the webpage by typing *localhost* into your web browser.
 
 ### What is a dockerfile?
 
@@ -8,12 +25,11 @@ A dockerfile is a document that has instructions to create a docker image, with 
 ### How to build an image from a Dockerfile
 docker build -t [img name] [path to folder that has Dockerfile]  
 
-ex: docker build -t img_test .  
-. is the current folder  
+ex: docker build -t test ./  
 
 ### How to run container from image
-*docker create* - Creates a container but does not start it.  
-*docker run* - Creates and starts container in one operation.  
+**docker create** - Creates a container but does not start it.  
+**docker run** - Creates and starts container in one operation.  
 
 ### How to run a image and access the cmd line of the container
 linux_user: docker run -it [image id] /bin/bash  
