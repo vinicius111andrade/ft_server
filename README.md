@@ -14,7 +14,7 @@
 3. Run container from created image.  
   **docker run --name test_cont -it -p 80:80 -p 443:443 test_img**  
 4. The container will start and you can use bash inside it.  
-  You can turn autoindex on and of using **bash root/autoindex.sh**  
+  You can turn autoindex on and off using **bash root/autoindex.sh**  
 5. Accessing localhost.  
   You can access the webpage by typing *localhost* into your web browser.  
 
