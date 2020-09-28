@@ -1,5 +1,7 @@
 # ft_server
-This is a 42sp project. It's a dockerfile with other configuration archives to make a web server run in a docker container. It uses Nginx, MySQL, OpenSSL, PHPMyAdmin and WordPress to make it all work.
+This is a 42sp project. It's a dockerfile with other configuration archives to make a web server run in a docker container. It uses Nginx, MySQL, OpenSSL, PHPMyAdmin and WordPress to make it all work.  
+  
+[ft_server Subject](https://cdn.intra.42.fr/pdf/pdf/10332/en.subject.pdf)  
 
 ### How to run and test
 
