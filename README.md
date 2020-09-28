@@ -19,7 +19,7 @@ docker create -> creates a container but does not start it
 docker run -> creates and starts container in one operation
 
 ### How to start, stop, restart container
-docker start \n
+docker start  
 docker stop
 docker restart
 
