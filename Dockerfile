@@ -5,18 +5,18 @@ FROM debian:buster
 ARG DEBIAN_FRONTEND=noninteractive
 
 #	This is just a label, you can give it whatever names you want
-LABEL author="Vinicius Andrade" id="vde-melo" email="vinicius111andrade@gmail.com"
+LABEL author="Vinicius Andrade" id="vde-melo"
 
 #	Setting enviroment variables
-#	Examples
-#ARG var_name_ex1="str"
-#ARG var_name_ex2=/path
-#ARG var_name_ex3=https://google.com
+#		Variables Configuration Examples
+#ARG dir_path=/path/path
+#ARG str="abcd"
+#ARG url=https...
 
 #	Download package information from all configured sources. It is a recommended step.
-RUN apt-get update
+RUN apt-get -y update
 #	Downloads latest patches
-RUN apt-get upgrade
+RUN apt-get -y upgrade
 
 #	Nginx is the webserver we will use. It will run 3 services, WordPress, phpMyAdmin and MySQL.
 #		WordPress is a content management system (CMS) written in PHP and paired with a MySQL database. We will use it to make our webpage.
@@ -24,24 +24,28 @@ RUN apt-get upgrade
 #		MySQL is a relational database management system (RDBMS).
 
 #	Install basic tools. -q makes it quiet. -y answers yes automatically.
-#	Won't install because not needed
-#RUN apt-get install -qy git
-#RUN apt-get install -qy locales
-#RUN apt-get install -qy nano
-#RUN apt-get install -qy wget
-#RUN apt-get install -qy curl
+RUN apt-get install -qy wget
 
-#	Install Nginx, OpenSSL, MariaDB.
+#	Install Nginx, OpenSSL, MySQL.
 RUN apt-get install -qy nginx openssl mariadb-server
 #	Instal PHP 7.3 and common PHP extensions
-RUN apt-get install -qy php7.3 php-fpm php-mysql \
-	php-common php-cli php-mbstring
+RUN apt-get install -qy php7.3 php-fpm php-mysql php-cli php-mbstring
 
-#	Copy srcs files to inside the container
-COPY srcs /tmp/
+# Copy source files to the root of the container.
+COPY srcs /root/
 
-# Run setup script
-RUN bash /tmp/setup.sh
+# Server setup.
+RUN bash /root/setup.sh
 
-# Start services
-ENTRYPOINT bash /tmp/services.sh
+# Expose network ports that are going to be used.
+EXPOSE 80/tcp
+EXPOSE 80/udp
+
+EXPOSE 443/tcp
+EXPOSE 443/udp
+
+# Start services.
+ENTRYPOINT bash /root/start.sh
+
+# Keeps container running
+CMD tail -f /dev/null

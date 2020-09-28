@@ -1,18 +1,25 @@
-#!/bin/bash
+# NGINX config file location.
+nginx_file='/etc/nginx/sites-enabled/default'
 
-# This script turns autoindex on or off according to argument $1
-#   $1 is the first argument passed to the script when calling it, $0 is the name of the script file, $2 is the second arg
+# Searches file for "autoindex on".
+grep "autoindex on;" "$nginx_file" > /dev/null
 
-INDEX=$1
-NGINX_CONF=/etc/nginx/sites-available/nginx.conf
+# If it finds "autoindex on", switches it OFF.
+if [ "$?" = "0" ]; then
+	echo "AutoIndex is currently ON. Turning it OFF"
+	sed -i 's|autoindex on|autoindex off|g' "$nginx_file"
+	sed -i 's|root /var/www/localhost;|root /var/www/localhost/wordpress;|g' "$nginx_file"
+	autoindex="OFF";
 
-if [[ "$INDEX" == "on" || "$INDEX" == "off" ]];
-then
-	sed -i -E "/autoindex/ s/on|off/$INDEX/" $NGINX_CONF
-	nginx -s reload
-	echo "Autoindex option is now set to $INDEX"
+# Else, switches it ON.
 else
-	echo "Please provide a valid value ('on' or 'off') for autoindex, ex: ./autoindex.sh on"
+	echo "AutoIndex is currently OFF. Turning it ON"
+	sed -i 's/autoindex off/autoindex on/g' "$nginx_file"
+	sed -i 's|root /var/www/localhost/wordpress;|root /var/www/localhost;|g' "$nginx_file"
+	autoindex="ON";
 fi
 
-# fi closes if statement
+# Restarts NGINX and confirms switch.
+echo "Restarting NGINX"
+/etc/init.d/nginx restart
+echo -e "AutoIndex is now $autoindex!"
