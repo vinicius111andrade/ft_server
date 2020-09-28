@@ -48,3 +48,12 @@ root@[image id]: [now here you can insert your commands]
 While inside the container:  
 **CTRL + D** - Exits and stops the container.  
 **CTRL + P, CTRL + Q** - Exits container and keeps it running.  
+
+### Useful links  
+  
+[Docker Documentation](https://docs.docker.com/reference/ )  
+[Nginx Documentation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/?_ga=2.203137169.148315847.1594301020-870972343.1594301020)  
+[OpenSSL](https://www.openssl.org/)  
+[MySQL](https://www.mysql.com/) or [MariaDB](https://mariadb.org/)  
+[PHPMyAdmin](https://www.phpmyadmin.net/)  
+[WordPress](https://wordpress.org/)  
