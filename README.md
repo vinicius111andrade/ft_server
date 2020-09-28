@@ -5,18 +5,18 @@
 *Requirements*  
   You need docker installed.
 
-1. Make the ports 80 and 443 available.
-  **service nginx stop** - To make sure nginx is off.
-  **docker stop $(docker ps -aq)** - To make sure all containers are off.
-2. Build image from docker file.
-  **cd path_to_dockerfile_folder**
-  **docker build -t test_img ./**
-3. Run container from created image.
-  **docker run --name test_cont -it -p 80:80 -p 443:443 test_img**
-4. The container will start and you can use bash inside it.
-  You can turn autoindex on and of using **bash root/autoindex.sh**
-5. Accessing localhost.
-  You can access the webpage by typing *localhost* into your web browser.
+1. Make the ports 80 and 443 available.  
+  **service nginx stop** - To make sure nginx is off.  
+  **docker stop $(docker ps -aq)** - To make sure all containers are off.  
+2. Build image from docker file.  
+  **cd path_to_dockerfile_folder**  
+  **docker build -t test_img ./**  
+3. Run container from created image.  
+  **docker run --name test_cont -it -p 80:80 -p 443:443 test_img**  
+4. The container will start and you can use bash inside it.  
+  You can turn autoindex on and of using **bash root/autoindex.sh**  
+5. Accessing localhost.  
+  You can access the webpage by typing *localhost* into your web browser.  
 
 ### What is a dockerfile?
 
