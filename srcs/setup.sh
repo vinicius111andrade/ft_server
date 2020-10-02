@@ -7,7 +7,8 @@ cd /root/
 mkdir /var/www/localhost
 
 # Grant access permissions. chown changes owner, chmod changes permissions.
-# www-data is the user the web server will use to modify the files
+# 	Every folder in / has root as owner by default, so we have to change that.
+# 	www-data is the user the web server will use to modify the files.
 chown -R www-data /var/www/*
 chmod -R 755 /var/www/*
 
